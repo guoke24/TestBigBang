@@ -176,6 +176,7 @@ public final class IKSegmenter {
 			//例如，神通广大海捞针，会被切分为：神通广 | 大海捞针
 			this.arbitrator.process(context, /*this.cfg.useSmart()*/true);
 			//将分词结果输出到结果集，并处理未切分的单个CJK字符
+			//保存到AnalyzeContext.results
 			context.outputToResult();
 			//记录本次分词的缓冲区位移，代码this.buffOffset += this.cursor
 			context.markBufferOffset();			
