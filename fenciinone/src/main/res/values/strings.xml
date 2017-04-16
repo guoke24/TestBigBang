@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SmartCut</string>
+    <string name="temp_text">日期20140415，支持中英文，支持智能切分和最细切分2种策略。Now the function support the Chinese and English.</string>
+    <string name="fenci_text">分词</string>
+    <string name="bt_start_fenci">开启监听剪贴板服务</string>
+    <string name="bt_stop_fenci">停止监听剪贴板服务</string>
+    <string name="sv_start_fenci">已开启分词功能</string>
+    <string name="sv_stop_fenci">已停止分词功能</string>
+    <string name="smart_cut">SmartCut</string>
+    <string name="single_cut">SingleCut</string>
+    <string name="show_punctuation">显示标点</string>
+    <string name="hide_punctuation">隐藏标点</string>
+    <string name="local_dict">本地分词</string>
+    <string name="net_dict">网络分词</string>
+    <string name="hide_blank">隐藏空格</string>
+    <string name="show_blank">显示空格</string>
+
+</resources>

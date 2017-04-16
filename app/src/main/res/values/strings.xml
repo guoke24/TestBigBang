@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">智能分词</string>
+    <string name="temp_content">现在只能对中文分词</string>
+    <string name="fenci_bt">分词</string>
+</resources>

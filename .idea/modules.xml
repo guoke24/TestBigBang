@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TestBigBang.iml" filepath="$PROJECT_DIR$/TestBigBang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fenci-ik/fenci-ik.iml" filepath="$PROJECT_DIR$/fenci-ik/fenci-ik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fenci-lib/fenci-lib.iml" filepath="$PROJECT_DIR$/fenci-lib/fenci-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fenciinone/fenciinone.iml" filepath="$PROJECT_DIR$/fenciinone/fenciinone.iml" />
+    </modules>
+  </component>
+</project>

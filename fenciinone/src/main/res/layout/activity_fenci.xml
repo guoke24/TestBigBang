@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- android:fillViewport="true" 允许内部组建去填充它-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_fenci"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8D9FB8"
+    android:fillViewport="true"
+    >
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/smart_cut"
+                android:id="@+id/switch_bt"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_punctuation"
+                android:id="@+id/point_bt"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/local_dict"
+                android:id="@+id/local_net_bt"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hide_blank"
+                android:id="@+id/space_bt"/>
+        </LinearLayout>
+
+
+        <com.topwise.fenciinone.ui.FenciLayout
+            android:id="@+id/fenci_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+        </com.topwise.fenciinone.ui.FenciLayout>
+
+    </FrameLayout>
+
+</ScrollView>
