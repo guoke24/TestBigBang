@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.FenciActivity"
-            android:theme="@style/Base.V7.Theme.AppCompat.Light"
+            android:theme="@style/Theme.AppCompat.Light"
             >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

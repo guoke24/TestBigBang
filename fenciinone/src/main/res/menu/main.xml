@@ -5,14 +5,14 @@
         android:id="@+id/action_cut"
         app:showAsAction="always"
         android:icon="@drawable/smart"
-        android:title="@string/action_cut"/>
+        android:title="@string/single_cut"/>
     <item
         android:id="@+id/action_point"
         app:showAsAction="always"
         android:icon="@drawable/point_show"
-        android:title="@string/action_Point"/>
+        android:title="@string/hide_punctuation"/>
     <item
         android:id="@+id/action_blank"
-        app:showAsAction="never"
+        android:showAsAction="never"
         android:title="@string/show_blank"/>
 </menu>

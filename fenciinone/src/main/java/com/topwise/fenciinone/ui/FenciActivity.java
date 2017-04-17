@@ -93,7 +93,7 @@ public class FenciActivity extends AppCompatActivity implements FenciLayout.Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_fenci);
         //得到actionBar，注意我的是V7包，使用getSupportActionBar()
         actionBar = getSupportActionBar();
@@ -249,12 +249,14 @@ public class FenciActivity extends AppCompatActivity implements FenciLayout.Acti
             isSmart = false;
             cutMenu.setTitle(R.string.single_cut);
             cutMenu.setIcon(R.drawable.single);
-            switchBt.setText(getString(R.string.single_cut));
+            cutMenu.setTitle(getString(R.string.smart_cut));
+            switchBt.setText(getString(R.string.smart_cut));
         }else{
             isSmart = true;
             cutMenu.setTitle(R.string.smart_cut);
             cutMenu.setIcon(R.drawable.smart);
-            switchBt.setText(getString(R.string.smart_cut));
+            cutMenu.setTitle(getString(R.string.single_cut));
+            switchBt.setText(getString(R.string.single_cut));
         }
         reFreshLayout();
     }
@@ -266,11 +268,13 @@ public class FenciActivity extends AppCompatActivity implements FenciLayout.Acti
         if (isShowPoint){
             isShowPoint = false;
             pointMenu.setIcon(R.drawable.point_hide);
-            pointBt.setText(getString(R.string.hide_punctuation));
+            pointMenu.setTitle(getString(R.string.show_punctuation));
+            pointBt.setText(getString(R.string.show_punctuation));
         }else{
             isShowPoint = true;
             pointMenu.setIcon(R.drawable.point_show);
-            pointBt.setText(getString(R.string.show_punctuation));
+            pointMenu.setTitle(getString(R.string.hide_punctuation));
+            pointBt.setText(getString(R.string.hide_punctuation));
         }
         reFreshLayout();
     }
