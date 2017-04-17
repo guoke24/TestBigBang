@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.topwise.fenciinone">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -10,7 +11,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_plus"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -21,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.FenciActivity">
+        <activity android:name=".ui.FenciActivity"
+            android:theme="@style/Base.V7.Theme.AppCompat.Light"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 

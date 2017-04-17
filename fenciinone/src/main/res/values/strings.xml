@@ -14,5 +14,8 @@
     <string name="net_dict">网络分词</string>
     <string name="hide_blank">隐藏空格</string>
     <string name="show_blank">显示空格</string>
+    <string name="action_cut">Cut</string>
+    <string name="action_Point">Point</string>
+    <string name="action_Pblank">show blank</string>
 
 </resources>

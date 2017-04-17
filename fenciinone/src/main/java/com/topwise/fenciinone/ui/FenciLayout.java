@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -378,6 +379,7 @@ public class FenciLayout extends ViewGroup implements FenciActionBar.ActionListe
         //view.setPadding(10,1,5,1);
         view.setBackgroundResource(R.drawable.item_background);
         //view.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.bigbang_item_text));
+        view.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.bigbang_item_text));
         view.setGravity(Gravity.CENTER);
         if (mItemTextSize > 0) view.setTextSize(TypedValue.COMPLEX_UNIT_PX, mItemTextSize);
         //调用了ViewGroup的函数

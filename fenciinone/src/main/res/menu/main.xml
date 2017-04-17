@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_cut"
+        app:showAsAction="always"
+        android:icon="@drawable/smart"
+        android:title="@string/action_cut"/>
+    <item
+        android:id="@+id/action_point"
+        app:showAsAction="always"
+        android:icon="@drawable/point_show"
+        android:title="@string/action_Point"/>
+    <item
+        android:id="@+id/action_blank"
+        app:showAsAction="never"
+        android:title="@string/show_blank"/>
+</menu>

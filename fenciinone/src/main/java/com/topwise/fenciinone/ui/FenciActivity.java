@@ -6,9 +6,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,7 +28,7 @@ import com.topwise.fenciinone.parsernetwork.NetworkParser;
 
 
 
-public class FenciActivity extends Activity implements FenciLayout.ActionListener{
+public class FenciActivity extends AppCompatActivity implements FenciLayout.ActionListener{
 
     public static final String EXTRA_TEXT = "extra_text";
 
@@ -68,6 +74,15 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
     boolean isNet = false;
     boolean isSpace = false;
 
+    /**
+     * 是否第一次加载的flag
+     */
+    boolean isFisteLaunch = true;
+
+    ActionBar actionBar;
+    MenuItem cutMenu;
+    MenuItem pointMenu;
+    MenuItem blankMenu;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -78,15 +93,66 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_fenci);
+        //得到actionBar，注意我的是V7包，使用getSupportActionBar()
+        actionBar = getSupportActionBar();
+        //让actionBar显示自定义的logo
+        //actionBar.setLogo(R.mipmap.ic_launcher_plus);
+        //actionBar.setTitle("");
+        //actionBar.setDisplayUseLogoEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
         initView();
         handleIntent(getIntent());
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
 
+    /**
+     * 加载menu
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * 实例化 menuItem
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        cutMenu = menu.findItem(R.id.action_cut);
+        pointMenu = menu.findItem(R.id.action_point);
+        blankMenu = menu.findItem(R.id.action_blank);
+        return true;
+    }
+
+    /**
+     * 点击menuItem的响应函数
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_cut:
+                onCutMenuItem();
+                return true;
+            case R.id.action_point:
+                onPointMenuItemClick();
+                return true;
+            case R.id.action_blank:
+                onBlankMenuItemClick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -106,6 +172,8 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
         fenciLayout = (FenciLayout) findViewById(R.id.fenci_layout);
         fenciLayout.setActionListener(this);
         switchBt = (Button) findViewById(R.id.switch_bt);
+        //add by guohao 20170417 先取消按钮显示
+        switchBt.setVisibility(View.GONE);
         switchBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +189,8 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
         });
 
         pointBt = (Button) findViewById(R.id.point_bt);
+        //add by guohao 20170417 先取消按钮显示
+        pointBt.setVisibility(View.GONE);
         pointBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +206,8 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
         });
 
         localAndNetBt = (Button) findViewById(R.id.local_net_bt);
+        //add by guohao 20170417 先取消网络分词的选项
+        localAndNetBt.setVisibility(View.GONE);
         localAndNetBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +222,10 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
                 onLocalAndNetChanged();
             }
         });
+
         spaceBt = (Button) findViewById(R.id.space_bt);
+        //add by guohao 20170417 先取消按钮显示
+        spaceBt.setVisibility(View.GONE);
         spaceBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,6 +239,56 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
                 reFreshLayout();
             }
         });
+    }
+
+    /**
+     * 点击了 smart/single msnuitem
+     */
+    void onCutMenuItem(){
+        if (isSmart){
+            isSmart = false;
+            cutMenu.setTitle(R.string.single_cut);
+            cutMenu.setIcon(R.drawable.single);
+            switchBt.setText(getString(R.string.single_cut));
+        }else{
+            isSmart = true;
+            cutMenu.setTitle(R.string.smart_cut);
+            cutMenu.setIcon(R.drawable.smart);
+            switchBt.setText(getString(R.string.smart_cut));
+        }
+        reFreshLayout();
+    }
+
+    /**
+     * 点击了切换标点显示的item
+     */
+    void onPointMenuItemClick(){
+        if (isShowPoint){
+            isShowPoint = false;
+            pointMenu.setIcon(R.drawable.point_hide);
+            pointBt.setText(getString(R.string.hide_punctuation));
+        }else{
+            isShowPoint = true;
+            pointMenu.setIcon(R.drawable.point_show);
+            pointBt.setText(getString(R.string.show_punctuation));
+        }
+        reFreshLayout();
+    }
+
+    /**
+     * 点击切换空格显示的item
+     */
+    void onBlankMenuItemClick(){
+        if (isSpace){
+            isSpace = false;
+            blankMenu.setTitle(getString(R.string.show_blank));
+            spaceBt.setText(getString(R.string.hide_blank));
+        }else{
+            isSpace = true;
+            blankMenu.setTitle(getString(R.string.hide_blank));
+            spaceBt.setText(getString(R.string.show_punctuation));
+        }
+        reFreshLayout();
     }
 
     /**
@@ -343,6 +468,8 @@ public class FenciActivity extends Activity implements FenciLayout.ActionListene
     ProgressDialog waitingDialog;
 
     private void showWaitingDialog() {
+        if (!isFisteLaunch) return;
+
     /* 等待Dialog具有屏蔽其他控件的交互能力
      * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
      * 下载等事件完成后，主动调用函数关闭该Dialog
